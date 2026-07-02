@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,8 +16,8 @@
             --apple-bg: #F5F5F7;
             --panel-bg: #FFFFFF;
             --border-color: #E5E5E7;
-            --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
-            --shadow-md: 0 12px 30px rgba(0,0,0,0.06);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.06);
             --radius-lg: 18px;
             --radius-md: 12px;
         }
@@ -145,8 +146,13 @@
             gap: 4px;
         }
 
-        .trend-up { color: #34C759; }
-        .trend-neutral { color: var(--apple-gray); }
+        .trend-up {
+            color: #34C759;
+        }
+
+        .trend-neutral {
+            color: var(--apple-gray);
+        }
 
         /* Flywheel & Funnel Panel */
         .analytics-block {
@@ -354,7 +360,7 @@
             width: 90%;
             max-width: 700px;
             padding: 40px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
             position: relative;
             transform: translateY(20px);
             transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -488,6 +494,7 @@
             border: 1px solid var(--border-color);
         }
 
+        /* 升级版：标题放大、用红色、加粗 */
         .spec-title {
             font-size: 16px;
             font-weight: 700;
@@ -496,6 +503,7 @@
             display: block;
         }
 
+        /* 正文描述内容加大字号 */
         .spec-desc {
             font-size: 14px;
             color: var(--apple-black);
@@ -534,8 +542,141 @@
             border-bottom: 2px solid var(--miniso-red);
             padding-bottom: 2px;
         }
+
+        /* ==========================================================================
+   十、 手机端自适应方案（等比缩小与卡片堆叠）
+   ========================================================================== */
+        @media screen and (max-width: 768px) {
+
+            /* 1. 调整顶部边距与标题大小 */
+            main {
+                padding: 0 16px;
+            }
+
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            header {
+                padding: 16px 20px;
+            }
+
+            .brand-title h1 {
+                font-size: 18px;
+                line-height: 1.3;
+            }
+
+            .meta-info {
+                flex-wrap: wrap;
+                font-size: 12px;
+            }
+
+            .section-title {
+                font-size: 20px;
+                margin-top: 20px;
+            }
+
+            /* 2. 核心大盘（4个指标变 2列） */
+            .dashboard-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .kpi-card {
+                padding: 16px;
+            }
+
+            .kpi-value {
+                font-size: 26px;
+            }
+
+            .kpi-label {
+                font-size: 12px;
+            }
+
+            .kpi-trend {
+                font-size: 11px;
+            }
+
+            /* 3. 飞轮模块与漏斗模块（双栏变单栏） */
+            .analytics-block {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .flywheel-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .funnel-stage {
+                font-size: 11px;
+                padding: 8px;
+            }
+
+            .panel {
+                padding: 20px;
+            }
+
+            /* 4. 爆款矩阵卡片（4列变 2列，甚至 1列） */
+            .matrix-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .card-image-box {
+                height: 150px;
+            }
+
+            /* 手机端压缩一下封面图高度 */
+            .card-image-placeholder {
+                font-size: 10px;
+                padding: 10px;
+            }
+
+            .card-title {
+                font-size: 15px;
+            }
+
+            .card-body {
+                padding: 16px;
+            }
+
+            .card-data-row {
+                font-size: 12px;
+            }
+
+            /* 5. AIGC 板块双栏变单栏 */
+            .aigc-formulas {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .spec-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .aigc-block {
+                padding: 20px;
+            }
+
+            /* 6. 底部总结 */
+            .conclusion-banner {
+                padding: 24px 16px;
+            }
+
+            .conclusion-banner h3 {
+                font-size: 18px;
+            }
+
+            .conclusion-banner p {
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -553,7 +694,7 @@
         <!-- ============================================================
              新增：前置声明（只加这一段，其余全部保持原样）
              ============================================================ -->
-        <div style="max-width: 1400px; margin: -20px auto 0; padding: 0 40px;">
+        <div style="max-width: 1400px; margin: -20px auto 20px; padding: 0;">
             <div style="background: #FFFFFF; border-radius: 16px; border: 1px solid #E5E5E7; padding: 20px 28px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
                 <div style="display: flex; align-items: flex-start; gap: 12px;">
                     <span style="background: #E3142A; color: white; padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; white-space: nowrap; margin-top: 2px;">📌 前置说明</span>
@@ -623,15 +764,19 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="panel">
                 <div class="funnel-wrapper">
-                    <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px; width: 100%; text-align: left;">全链路漏斗量化沉淀</h3>
+                    <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px; width: 100%; text-align: left;">
+                        全链路漏斗量化沉淀</h3>
                     <div class="funnel-stage" style="background-color: #E3142A; width: 100%;">曝光拦截层：151,358 (100%)</div>
                     <div class="funnel-stage" style="background-color: #EA4353; width: 85%;">内容观看层：44,889 (29.6%)</div>
-                    <div class="funnel-stage" style="background-color: #F1727F; width: 70%;">交互留存层：10,072 (22.44% 互动率)</div>
-                    <div class="funnel-stage" style="background-color: #F8A1AA; width: 55%;">私域飞轮群：1,116 核心会员 (文档访问1002人)</div>
-                    <div class="funnel-stage" style="background-color: #FCD0D4; width: 40%; color: var(--apple-black);">产品升级层：Her Lens 预估 >5,000 PV</div>
+                    <div class="funnel-stage" style="background-color: #F1727F; width: 70%;">交互留存层：10,072 (22.44% 互动率)
+                    </div>
+                    <div class="funnel-stage" style="background-color: #F8A1AA; width: 55%;">私域飞轮群：1,116 核心会员
+                        (文档访问1002人)</div>
+                    <div class="funnel-stage" style="background-color: #FCD0D4; width: 40%; color: var(--apple-black);">
+                        产品升级层：Her Lens 预估 >5,000 PV</div>
                 </div>
             </div>
         </div>
@@ -644,7 +789,7 @@
                 <div class="card-badge">冷启动立项期</div>
                 <div class="card-image-box">
                     <img src="images/cover_1.jpg" alt="阶段A封面">
-                  
+
                 </div>
                 <div class="card-body">
                     <div class="card-date">发布时间：05月31日</div>
@@ -661,13 +806,14 @@
                 <div class="card-badge">理念造势期</div>
                 <div class="card-image-box">
                     <img src="images/cover_2.jpg" alt="阶段B封面">
-                    
+
                 </div>
                 <div class="card-body">
                     <div class="card-date">发布时间：06月01日</div>
                     <div class="card-title">阶段B(垂直信息差)</div>
                     <div class="card-data-row"><span>峰值曝光</span><span>48,002</span></div>
-                    <div class="card-data-row"><span>封面点击率 (CTR)</span><span style="color: var(--miniso-red);">26.6% (峰值)</span></div>
+                    <div class="card-data-row"><span>封面点击率 (CTR)</span><span style="color: var(--miniso-red);">26.6%
+                            (峰值)</span></div>
                     <div class="card-data-row"><span>引发观看</span><span>12,997</span></div>
                     <div class="action-tip">ℹ️ 点击查看封面驱动逻辑与流量特征</div>
                 </div>
@@ -678,12 +824,13 @@
                 <div class="card-badge">价值交付期</div>
                 <div class="card-image-box">
                     <img src="images/cover_3.jpg" alt="阶段C封面">
-                   
+
                 </div>
                 <div class="card-body">
                     <div class="card-date">发布时间：06月12日</div>
                     <div class="card-title">阶段C(工具化推新)</div>
-                    <div class="card-data-row"><span>总观看量</span><span style="color: var(--miniso-red);">21,225 (最高)</span></div>
+                    <div class="card-data-row"><span>总观看量</span><span style="color: var(--miniso-red);">21,225
+                            (最高)</span></div>
                     <div class="card-data-row"><span>核心爆发增粉</span><span>+501 粉丝</span></div>
                     <div class="card-data-row"><span>系统推流曝光</span><span>39,343</span></div>
                     <div class="action-tip">ℹ️ 点击查看封面驱动逻辑与流量特征</div>
@@ -695,12 +842,13 @@
                 <div class="card-badge">产品升级期</div>
                 <div class="card-image-box">
                     <img src="images/cover_4.jpg" alt="阶段D封面">
-                
+
                 </div>
                 <div class="card-body">
                     <div class="card-date">发布时间：06月28日</div>
                     <div class="card-title">阶段D(品牌独立上线)</div>
-                    <div class="card-data-row"><span>平均观看时长</span><span style="color: var(--miniso-red);">26.4s (高长停留)</span></div>
+                    <div class="card-data-row"><span>平均观看时长</span><span style="color: var(--miniso-red);">26.4s
+                            (高长停留)</span></div>
                     <div class="card-data-row"><span>内容曝光</span><span>6,939</span></div>
                     <div class="card-data-row"><span>初始点击率</span><span>20.0%</span></div>
                     <div class="action-tip">ℹ️ 点击查看封面驱动逻辑与流量特征</div>
@@ -719,7 +867,8 @@
                     <p><strong>结构模板：</strong>[功能交付声明] + [使用场景演示] + [社交互动诱饵（征集录入）] + [社群链路闭环]</p>
                     <div class="formula-highlight">
                         🔥 爆款实测： “可留言游戏名，看到会录入……有想增加的条目也可以评论留言” <br>
-                        <span style="color: var(--apple-gray); font-weight: 400;">💡 运营归因：极高频的 UGC 共创诱饵，让用户迅速成为生态一员，极大提高评论留存权重。</span>
+                        <span style="color: var(--apple-gray); font-weight: 400;">💡 运营归因：极高频的 UGC
+                            共创诱饵，让用户迅速成为生态一员，极大提高评论留存权重。</span>
                     </div>
                 </div>
                 <div class="formula-card">
@@ -727,14 +876,16 @@
                     <p><strong>结构模板：</strong>[弱势群体痛点陈述] + [个人立场拔高] + [辩证认知转化] + [积极愿景共识] + [强行动链接]</p>
                     <div class="formula-highlight">
                         🔥 爆款实测： “配角再优秀也是陪衬……但女性主角游戏宝贵，绝不失望，相信会越来越多。” <br>
-                        <span style="color: var(--apple-gray); font-weight: 400;">💡 运营归因：通过对痛点理性的“先破后立”，在社区中定向筛选高净值核心粉丝，形成竞争壁垒。</span>
+                        <span style="color: var(--apple-gray); font-weight: 400;">💡
+                            运营归因：通过对痛点理性的“先破后立”，在社区中定向筛选高净值核心粉丝，形成竞争壁垒。</span>
                     </div>
                 </div>
             </div>
 
             <!-- 下半部分：AIGC 模型训练标注规范 -->
             <div class="aigc-specs">
-                <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 16px; color: var(--apple-black);">AIGC 模型训练标注规范</h4>
+                <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 16px; color: var(--apple-black);">AIGC
+                    模型训练标注规范</h4>
                 <div class="spec-grid">
                     <div class="spec-item">
                         <span class="spec-title">情绪词占比参数</span>
@@ -760,7 +911,8 @@
         <div class="conclusion-banner">
             <h3>AIGC 内容运营方法论总结</h3>
             <p style="margin-bottom: 8px;">从表格工具到垂直女性主角游戏社区，本项目冷启动验证的底层逻辑是：</p>
-            <p style="font-size: 18px; font-weight: 500; color: white; margin-top: 4px;"><span class="conclusion-highlight">“用高密度的内容做桥梁拦截公域，用敏捷迭代的产品做私域资产沉淀”</span>。</p>
+            <p style="font-size: 18px; font-weight: 500; color: white; margin-top: 4px;"><span
+                    class="conclusion-highlight">“用高密度的内容做桥梁拦截公域，用敏捷迭代的产品做私域资产沉淀”</span>。</p>
         </div>
     </main>
 
@@ -815,19 +967,21 @@
         // Modal Interactive Controller
         function openModal(id) {
             const data = noteData[id];
-            if(!data) return;
-            
+            if (!data) return;
+
             document.getElementById('modalTitle').innerText = data.title;
             document.getElementById('modalMeta').innerText = data.meta;
             document.getElementById('modalCoverStrategy').innerText = data.cover;
             document.getElementById('modalTrafficAnalysis').innerText = data.traffic;
-            
+
             document.getElementById('modalOverlay').classList.add('active');
         }
 
         function closeModal() {
             document.getElementById('modalOverlay').classList.remove('active');
         }
+
     </script>
 </body>
+
 </html>
